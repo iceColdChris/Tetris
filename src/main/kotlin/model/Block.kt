@@ -1,6 +1,6 @@
 package model
 
-import javafx.scene.paint.Color
+import java.awt.Color
 
 enum class Block(val letter : String, val color : Color) {
     EMPTY(" ", Color.BLACK),

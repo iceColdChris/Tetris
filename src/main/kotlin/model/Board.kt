@@ -25,11 +25,11 @@ class Board(private var width: Int, private var height: Int, private var pieces:
         private const val EXTRA_ROWS = 4
     }
 
-    private var frozenBlocks: MutableList<Array<Block>> = mutableListOf()
-    private lateinit var currentPiece: AbstractPiece
-    private lateinit var nextPiece: AbstractPiece
-    private var gameOver: Boolean = false
-    private var clearedLines: Int = 0
+    var frozenBlocks: MutableList<Array<Block>> = mutableListOf()
+    lateinit var currentPiece: AbstractPiece
+    lateinit var nextPiece: AbstractPiece
+    var gameOver: Boolean = false
+    var clearedLines: Int = 0
 
     constructor() : this(DEFAULT_WIDTH, DEFAULT_HEIGHT, ArrayList())
 
@@ -169,7 +169,7 @@ class Board(private var width: Int, private var height: Int, private var pieces:
         if (x in 0..(width - 1) && y >= 0) {
             result = Block.EMPTY
             if (x < frozenBlocks.size) {
-                result = frozenBlocks[y][x]
+                result = frozenBlocks[x][y]
             }
         }
         return result
@@ -184,7 +184,7 @@ class Board(private var width: Int, private var height: Int, private var pieces:
 
             // Add rows until this block can fit in one.
             while (y >= frozenBlocks.size) {
-                val newRow = arrayOf(Block.EMPTY)
+                val newRow = Array(width) { Block.EMPTY }
                 for (i in 0 until width) {
                     newRow[i] = Block.EMPTY
                 }
