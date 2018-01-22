@@ -3,7 +3,7 @@ package model
 abstract class AbstractPiece(private var rotations: Array<Array<IntArray>>, private var x: Int,
                              private var y: Int, val block: Block) : Piece, Cloneable {
     companion object {
-        val BLOCKS = 4
+        const val BLOCKS = 4
     }
 
     var currentRotation: Int = 0
